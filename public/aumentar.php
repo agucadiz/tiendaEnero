@@ -2,9 +2,6 @@
 
 session_start();
 
-use App\Tablas\Articulo;
-use ValueError;
-
 require '../vendor/autoload.php';
 
 $id = obtener_get('id');

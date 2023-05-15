@@ -6,7 +6,7 @@ session_start();
 
 require '../vendor/autoload.php';
 
-$categoria = obtener_get('categoria');
+$categoria = obtener_get('categoria'); // Capturar la categoría.
 
 try {
     $id = obtener_get('id');
@@ -30,6 +30,7 @@ try {
     $carrito->insertar($id);
     $_SESSION['carrito'] = serialize($carrito);
 
+    // Mantener la categoría en el buscador.
     if ($categoria !== null) {
         header('Location: index.php?categoria=' . $categoria);
     } else {

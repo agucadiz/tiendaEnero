@@ -5,10 +5,11 @@ CREATE TABLE articulos (
     codigo          varchar(13)   NOT NULL UNIQUE,
     descripcion     varchar(255)  NOT NULL,
     precio          numeric(7, 2) NOT NULL,
-    categoria_id    BIGINT        NOT NULL REFERENCES categorias(id), 
+    categoria_id    BIGINT        NOT NULL REFERENCES categorias(id), -- Categoría del artículo.
     stock           int           NOT NULL
 );
 
+/* 1.A. Implementar las categorias de los articulos. */
 DROP TABLE IF EXISTS categorias CASCADE;
 CREATE TABLE categorias (
     id          bigserial       PRIMARY KEY,

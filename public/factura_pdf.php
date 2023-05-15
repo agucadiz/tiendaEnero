@@ -39,12 +39,15 @@ foreach ($factura->getLineas($pdo) as $linea) {
     $precio = $articulo->getPrecio();
     $importe = $cantidad * $precio;
     $total += $importe;
-    $iva = $importe * 0.21;
+    $iva = $total * 0.21; // 4.A. Implementar IVA en la factura.
+    $total_iva = $total + $iva; // El total con el IVA incluido.
+
+    // Formato monetario:
     $precio = dinero($precio);
     $importe = dinero($importe);
     $iva = dinero($iva);
+    $total = dinero($total_iva);
     
-
     $filas_tabla .= <<<EOF
         <tr>
             <td>$codigo</td>
@@ -56,8 +59,6 @@ foreach ($factura->getLineas($pdo) as $linea) {
         </tr>
     EOF;
 }
-
-$total = dinero($total);
 
 $res = <<<EOT
 <p>Factura número: {$factura->id}</p>
