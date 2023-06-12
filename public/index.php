@@ -18,17 +18,14 @@
 
     //Recojo id de la categoría:
     $categoria = obtener_get('categoria');
-    $where = [];
+    $where = '';
     $execute = [];
 
     //Comprueba si se ha elegido alguna categoría:
     if (isset ($categoria) && $categoria != '') {
-        $where[] = 'categoria_id = :categoria';
+        $where = 'WHERE categoria_id = :categoria';
         $execute[':categoria'] = $categoria;
     }
-
-    //Pasa la categoría de un array a un string:
-    $where = !empty($where) ? 'WHERE ' . implode(' AND ', $where) : '';
 
     //Realiza la consulta:
     $pdo = conectar();
